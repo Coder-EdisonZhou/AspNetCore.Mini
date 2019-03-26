@@ -13,6 +13,6 @@ namespace AspNetCore.Mini.Core
             _handler = handler;
         }
 
-        public Task Run() => _server.StartAsync(_handler);
+        public Task Run() => _server.RunAsync(_handler);
     }
 }
