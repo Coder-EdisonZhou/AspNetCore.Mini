@@ -5,6 +5,9 @@ using System.Net;
 
 namespace AspNetCore.Mini.Core
 {
+    /// <summary>
+    /// 基于HttpListener的Feature
+    /// </summary>
     public class HttpListenerFeature : IHttpRequestFeature, IHttpResponseFeature
     {
         private readonly HttpListenerContext _context;
