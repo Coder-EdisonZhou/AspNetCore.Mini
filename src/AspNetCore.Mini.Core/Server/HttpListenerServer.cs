@@ -16,11 +16,11 @@ namespace AspNetCore.Mini.Core
             _urls = urls.Any() ? urls : new string[] { "http://localhost:5000/" };
         }
 
-        public async Task StartAsync(RequestDelegate handler)
+        public async Task RunAsync(RequestDelegate handler)
         {
             Array.ForEach(_urls, url => _httpListener.Prefixes.Add(url));
             _httpListener.Start();
-            Console.WriteLine("Server started and is listening on: {0}", string.Join(";", _urls));
+            Console.WriteLine("[Info]: Server started and is listening on: {0}", string.Join(";", _urls));
 
             while (true)
             {
@@ -30,7 +30,9 @@ namespace AspNetCore.Mini.Core
                     .Set<IHttpRequestFeature>(feature)
                     .Set<IHttpResponseFeature>(feature);
                 var httpContext = new HttpContext(features);
+                Console.WriteLine("[Info]: Server process one HTTP request start.");
                 await handler(httpContext);
+                Console.WriteLine("[Info]: Server process one HTTP request end.");
                 listenerContext.Response.Close();
             }
         }

@@ -3,6 +3,9 @@ using System;
 
 namespace AspNetCore.Mini.App
 {
+    /// <summary>
+    /// .NET Framework服务端启动
+    /// </summary>
     public class Program
     {
         public static void Main(string[] args)
@@ -24,6 +27,8 @@ namespace AspNetCore.Mini.App
                     .Use(BazMiddleware));
         }
 
+        #region 自定义中间件
+
         public static RequestDelegate FooMiddleware(RequestDelegate next)
         => async context =>
         {
@@ -39,6 +44,8 @@ namespace AspNetCore.Mini.App
         };
 
         public static RequestDelegate BazMiddleware(RequestDelegate next)
-        => context => context.Response.WriteAsync("Baz");
+        => context => context.Response.WriteAsync("Baz"); 
+
+        #endregion
     }
 }

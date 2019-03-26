@@ -4,6 +4,6 @@ namespace AspNetCore.Mini.Core
 {
     public interface IServer
     {
-        Task StartAsync(RequestDelegate handler);
+        Task RunAsync(RequestDelegate handler);
     }
 }
