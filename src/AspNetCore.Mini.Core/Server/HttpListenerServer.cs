@@ -19,12 +19,19 @@ namespace AspNetCore.Mini.Core
         public async Task RunAsync(RequestDelegate handler)
         {
             Array.ForEach(_urls, url => _httpListener.Prefixes.Add(url));
-            _httpListener.Start();
+            if (!_httpListener.IsListening)
+            {
+                _httpListener.Start();
+            }
             Console.WriteLine("[Info]: Server started and is listening on: {0}", string.Join(";", _urls));
 
             while (true)
             {
                 var listenerContext = await _httpListener.GetContextAsync();
+                Console.WriteLine("{0} {1} HTTP/{2}", 
+                    listenerContext.Request.HttpMethod, 
+                    listenerContext.Request.RawUrl, 
+                    listenerContext.Request.ProtocolVersion);
                 var feature = new HttpListenerFeature(listenerContext);
                 var features = new FeatureCollection()
                     .Set<IHttpRequestFeature>(feature)
