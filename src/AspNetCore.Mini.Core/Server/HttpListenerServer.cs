@@ -20,7 +20,7 @@ namespace AspNetCore.Mini.Core
         {
             Array.ForEach(_urls, url => _httpListener.Prefixes.Add(url));
             _httpListener.Start();
-            Console.WriteLine("Info: Server started and is listening on: {0}", string.Join(";", _urls));
+            Console.WriteLine("[Info]: Server started and is listening on: {0}", string.Join(";", _urls));
 
             while (true)
             {
@@ -30,7 +30,9 @@ namespace AspNetCore.Mini.Core
                     .Set<IHttpRequestFeature>(feature)
                     .Set<IHttpResponseFeature>(feature);
                 var httpContext = new HttpContext(features);
+                Console.WriteLine("[Info]: Server process one HTTP request start.");
                 await handler(httpContext);
+                Console.WriteLine("[Info]: Server process one HTTP request end.");
                 listenerContext.Response.Close();
             }
         }
