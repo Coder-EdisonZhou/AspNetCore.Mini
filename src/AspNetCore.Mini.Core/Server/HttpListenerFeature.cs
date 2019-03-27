@@ -7,6 +7,7 @@ namespace AspNetCore.Mini.Core
 {
     /// <summary>
     /// 基于HttpListener的Feature
+    /// HttpContext与HttpListener的适配抽象层的具体实现
     /// </summary>
     public class HttpListenerFeature : IHttpRequestFeature, IHttpResponseFeature
     {

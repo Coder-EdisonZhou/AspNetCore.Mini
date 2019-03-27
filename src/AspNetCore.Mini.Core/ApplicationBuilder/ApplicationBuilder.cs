@@ -17,7 +17,7 @@ namespace AspNetCore.Mini.Core
         /// <returns>RequestDelegate</returns>
         public RequestDelegate Build()
         {
-            _middlewares.Reverse(); // 与注册中间件相反的顺序去执行中间件
+            _middlewares.Reverse(); // 倒置注册中间件集合的顺序
             return httpContext =>
             {
                 // 注册默认中间件 => 返回404响应
@@ -26,6 +26,7 @@ namespace AspNetCore.Mini.Core
                     return Task.CompletedTask;
                 };
 
+                // 构建中间件处理管道
                 foreach (var middleware in _middlewares)
                 {
                     next = middleware(next);

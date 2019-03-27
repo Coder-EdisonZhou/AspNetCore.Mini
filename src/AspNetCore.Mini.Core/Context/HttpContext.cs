@@ -6,10 +6,19 @@ using System.Threading.Tasks;
 
 namespace AspNetCore.Mini.Core
 {
+    /// <summary>
+    /// 自定义Http上下文
+    /// </summary>
     public class HttpContext
     {
+        /// <summary>
+        /// Http请求对象
+        /// </summary>
         public HttpRequest Request { get; }
 
+        /// <summary>
+        /// Http响应对象
+        /// </summary>
         public HttpResponse Response { get; }
 
         public HttpContext(IFeatureCollection features)
@@ -39,6 +48,12 @@ namespace AspNetCore.Mini.Core
 
     public static partial class Extensions
     {
+        /// <summary>
+        /// 为HttpResponse对象扩展响应输出方法
+        /// </summary>
+        /// <param name="response">HttpResponse</param>
+        /// <param name="contents">输出内容</param>
+        /// <returns>Task</returns>
         public static Task WriteAsync(this HttpResponse response, string contents)
         {
             var buffer = Encoding.UTF8.GetBytes(contents);
