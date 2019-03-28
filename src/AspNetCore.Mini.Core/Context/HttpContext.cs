@@ -28,6 +28,9 @@ namespace AspNetCore.Mini.Core
         }
     }
 
+    /// <summary>
+    /// 自定义Http请求类
+    /// </summary>
     public class HttpRequest
     {
         private readonly IHttpRequestFeature _feature;
@@ -37,6 +40,9 @@ namespace AspNetCore.Mini.Core
         public HttpRequest(IFeatureCollection features) => _feature = features.Get<IHttpRequestFeature>();
     }
 
+    /// <summary>
+    /// 自定义Http响应类
+    /// </summary>
     public class HttpResponse
     {
         private readonly IHttpResponseFeature _feature;

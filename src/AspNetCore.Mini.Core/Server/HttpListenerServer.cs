@@ -58,6 +58,9 @@ namespace AspNetCore.Mini.Core
         }
     }
 
+    /// <summary>
+    /// IWebHostBuilder扩展：使用基于HttpListener的Server
+    /// </summary>
     public static partial class Extensions
     {
         public static IWebHostBuilder UseHttpListener(this IWebHostBuilder builder, params string[] urls)
