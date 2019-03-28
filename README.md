@@ -9,9 +9,33 @@
 <img src="https://img2018.cnblogs.com/blog/19327/201901/19327-20190128080903608-382600093.jpg" alt="ASP.NET Core Mini"/>
 > 依赖注入、以Startup和StartupFilter的中间件注册方式、针对多种数据源的配置系统、诊断日志系统和一系列预定义的中间件
 
-## Debug执行效果
+## 运行效果展示
+```C#
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        CreateWebHostBuilder(args)
+            .Build()
+            .Run();
+
+        Console.ReadKey();
+    }
+
+    public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+    {
+        return new WebHostBuilder()
+            .UseHttpListener()
+            .Configure(app => app
+                .Use(FooMiddleware)
+                .Use(BarMiddleware)
+                .Use(BazMiddleware));
+    }
+}    
+```
+> 三个自定义中间件的执行显示结果如下图所示
 <img src="https://img2018.cnblogs.com/blog/19327/201901/19327-20190128080825603-1802425781.jpg" alt="ASP.NET Core Mini"/>
-> 三个自定义中间件的执行显示
+
 
 ## 参考博文
 [蒋金楠：200行代码，7个对象——带你了解ASP.NET Core的本质](https://www.cnblogs.com/artech/p/inside-asp-net-core-framework.html)
