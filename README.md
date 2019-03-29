@@ -38,4 +38,5 @@ public class Program
 
 
 ## 参考博文
+[周旭龙：一个Mini的ASP.NET Core框架的实现](https://www.cnblogs.com/edisonchou/p/aspnet_core_mini_implemention_introduction.html)
 [蒋金楠：200行代码，7个对象——带你了解ASP.NET Core的本质](https://www.cnblogs.com/artech/p/inside-asp-net-core-framework.html)
